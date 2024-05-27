@@ -25,17 +25,27 @@ List myTasks = [
   TasksController(
     taskTitle: "Read Book",
     taskDetails: "some pages of new book ",
-    taksStatus: true,
+    taksStatus: false,
   ),
   TasksController(
     taskTitle: "Learn new line of code",
     taskDetails: "Dialogs in flutter",
+    taksStatus: false,
+  ),
+  TasksController(
+    taskTitle: "Go to GYM",
+    taskDetails: "Today i should go to GYM at 9 PM ",
     taksStatus: true,
   ),
   TasksController(
     taskTitle: "Go to GYM",
     taskDetails: "Today i should go to GYM at 9 PM ",
     taksStatus: true,
+  ),
+  TasksController(
+    taskTitle: "Go to GYM",
+    taskDetails: "Today i should go to GYM at 9 PM ",
+    taksStatus: false,
   ),
 ];
 
@@ -50,6 +60,109 @@ class _TodoappState extends State<Todoapp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //! floating button
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          //! Open Add task section when i tab on floating button
+
+          showModalBottomSheet(
+              context: context,
+              builder: (context) {
+                return Container(
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(30)),
+                  width: double.infinity,
+                  height: 800,
+                  child: Padding(
+                    padding: const EdgeInsets.all(28.0),
+                    //! body of model sheet
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      // mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            //! add task title
+                            Text(
+                              "Add New Task",
+                              style: TextStyle(
+                                fontSize: 20,
+                              ),
+                            ),
+                            SizedBox(height: 28),
+                            //! add title
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.amber[300],
+                              ),
+                              padding: EdgeInsets.all(18),
+                              width: double.infinity,
+                              child: TextField(
+                                maxLength: 26,
+                                decoration: InputDecoration(
+                                  hintMaxLines: 26,
+                                  labelText: "Add task title",
+                                  prefixIcon: Icon(Icons.task_alt_rounded),
+                                  border: InputBorder.none,
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 28),
+                            //! add details
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.amber[300],
+                              ),
+                              padding: EdgeInsets.all(18),
+                              width: double.infinity,
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  labelText: "Add task Details",
+                                  prefixIcon: Icon(Icons.task_alt_rounded),
+                                  border: InputBorder.none,
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 18),
+                            //! Add task button
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                // backgroundColor: Colors.transparent,
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 50,
+                                  vertical: 10,
+                                ),
+                                textStyle: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.amber),
+                              ),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text("add task"),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                );
+              },
+              isScrollControlled: true);
+        },
+        tooltip: "add new task",
+        backgroundColor: Colors.amber[200],
+        child: Icon(
+          Icons.add_rounded,
+          color: Colors.white,
+          size: 35,
+        ),
+        splashColor: Colors.amber,
+      ),
       //! appBar Design section
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -161,6 +274,7 @@ class _TodoappState extends State<Todoapp> {
                       (e) => TaskCard(
                         taskTitle: e.taskTitle,
                         taskDetails: e.taskDetails,
+                        status: e.taksStatus,
                       ),
                     ),
                   ],

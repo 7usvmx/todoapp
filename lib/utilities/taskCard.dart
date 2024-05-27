@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 class TaskCard extends StatelessWidget {
   final taskTitle;
   final taskDetails;
-  final checked;
+  final status;
 
   const TaskCard({
     super.key,
     required this.taskTitle,
     required this.taskDetails,
-    this.checked,
+    this.status,
   });
 
   @override
@@ -56,9 +56,11 @@ class TaskCard extends StatelessWidget {
               ],
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                print("Checked");
+              },
               icon: Icon(
-                Icons.close_rounded,
+                status == true ? Icons.close_rounded : Icons.check_rounded,
                 color: Colors.white,
               ),
             )
