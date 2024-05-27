@@ -16,39 +16,6 @@ class TasksController {
   });
 }
 
-List myTasks = [
-  TasksController(
-    taskTitle: "Meeting",
-    taskDetails: " last website project (Noba Store) meeting at 4 PM",
-    taksStatus: true,
-  ),
-  // TasksController(
-  //   taskTitle: "Read Book",
-  //   taskDetails: "some pages of new book ",
-  //   taksStatus: false,
-  // ),
-  // TasksController(
-  //   taskTitle: "Learn new line of code",
-  //   taskDetails: "Dialogs in flutter",
-  //   taksStatus: false,
-  // ),
-  // TasksController(
-  //   taskTitle: "Go to GYM",
-  //   taskDetails: "Today i should go to GYM at 9 PM ",
-  //   taksStatus: true,
-  // ),
-  // TasksController(
-  //   taskTitle: "Go to GYM",
-  //   taskDetails: "Today i should go to GYM at 9 PM ",
-  //   taksStatus: true,
-  // ),
-  // TasksController(
-  //   taskTitle: "Go to GYM",
-  //   taskDetails: "Today i should go to GYM at 9 PM ",
-  //   taksStatus: false,
-  // ),
-];
-
 class Todoapp extends StatefulWidget {
   const Todoapp({super.key});
 
@@ -57,8 +24,46 @@ class Todoapp extends StatefulWidget {
 }
 
 class _TodoappState extends State<Todoapp> {
+  final errorMsg = "title and details can not be empty";
   final titleController = TextEditingController();
   final detailsController = TextEditingController();
+
+  errorMsgFunc() {
+    return errorMsg;
+  }
+
+  List myTasks = [
+    TasksController(
+      taskTitle: "Meeting",
+      taskDetails: " last website project (Noba Store) meeting at 4 PM",
+      taksStatus: true,
+    ),
+    TasksController(
+      taskTitle: "Read Book",
+      taskDetails: "some pages of new book ",
+      taksStatus: false,
+    ),
+    TasksController(
+      taskTitle: "Learn new line of code",
+      taskDetails: "Dialogs in flutter",
+      taksStatus: false,
+    ),
+    TasksController(
+      taskTitle: "Go to GYM",
+      taskDetails: "Today i should go to GYM at 9 PM ",
+      taksStatus: true,
+    ),
+    TasksController(
+      taskTitle: "Go to GYM",
+      taskDetails: "Today i should go to GYM at 9 PM ",
+      taksStatus: true,
+    ),
+    TasksController(
+      taskTitle: "Go to GYM",
+      taskDetails: "Today i should go to GYM at 9 PM ",
+      taksStatus: false,
+    ),
+  ];
 
   newTask() {
     myTasks.insert(
@@ -71,6 +76,8 @@ class _TodoappState extends State<Todoapp> {
     );
     // myTasks.add();
   }
+
+  //! Error message
 
 // ! this code for real time listening to text field texts
   // @override
@@ -112,6 +119,12 @@ class _TodoappState extends State<Todoapp> {
                               "Add new task",
                               style: TextStyle(
                                 fontSize: 20,
+                              ),
+                            ),
+                            Text(
+                              errorMsg,
+                              style: TextStyle(
+                                fontSize: 10,
                               ),
                             ),
                             SizedBox(height: 28),
@@ -168,11 +181,17 @@ class _TodoappState extends State<Todoapp> {
                               ),
                               onPressed: () {
                                 setState(() {
-                                  newTask();
-                                  titleController.text = "";
-                                  detailsController.text = "";
+                                  if (titleController.text.isEmpty ||
+                                      detailsController.text.isEmpty) {
+                                    // newTask();
+                                    errorMsgFunc();
+                                  } else {
+                                    newTask();
+                                    titleController.text = "";
+                                    detailsController.text = "";
+                                    Navigator.pop(context);
+                                  }
                                 });
-                                Navigator.pop(context);
                               },
                               child: Text("add task"),
                             )
