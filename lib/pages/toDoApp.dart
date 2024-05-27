@@ -156,12 +156,12 @@ class _TodoappState extends State<Todoapp> {
         },
         tooltip: "add new task",
         backgroundColor: Colors.amber[200],
+        splashColor: Colors.amber,
         child: Icon(
           Icons.add_rounded,
           color: Colors.white,
           size: 35,
         ),
-        splashColor: Colors.amber,
       ),
       //! appBar Design section
       appBar: AppBar(
