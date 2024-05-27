@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:todoapp/utilities/counter.dart';
 import 'package:todoapp/utilities/feeling.dart';
 import 'package:todoapp/utilities/taskCard.dart';
 
@@ -36,7 +37,7 @@ class _TodoappState extends State<Todoapp> {
     TasksController(
       taskTitle: "Meeting",
       taskDetails: " last website project (Noba Store) meeting at 4 PM",
-      taksStatus: true,
+      taksStatus: false,
     ),
     TasksController(
       taskTitle: "Read Book",
@@ -64,6 +65,17 @@ class _TodoappState extends State<Todoapp> {
       taksStatus: false,
     ),
   ];
+
+  int getStatus() {
+    int completedTasks = 0;
+
+    for (var element in myTasks) {
+      if (!element.taksStatus) {
+        completedTasks++;
+      }
+    }
+    return completedTasks;
+  }
 
   newTask() {
     myTasks.insert(
@@ -246,38 +258,46 @@ class _TodoappState extends State<Todoapp> {
                   ],
                 ),
                 //! Notification and Setting side
-                Row(
+                SizedBox(height: 14),
+                Column(
                   children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: Colors.amber[300],
-                      ),
-                      // padding: EdgeInsets.all(1),
-                      child: IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.notifications_none,
-                            color: Colors.white,
-                            size: 28,
-                          )),
-                    ),
-                    SizedBox(width: 5),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: Colors.amber[300],
-                      ),
-                      // padding: EdgeInsets.all(1),
-                      child: IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.settings,
-                          color: Colors.white,
-                          size: 28,
+                    Row(
+                      children: [
+                        SizedBox(height: 8),
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: Colors.amber[300],
+                          ),
+                          // padding: EdgeInsets.all(1),
+                          child: IconButton(
+                              onPressed: () {},
+                              icon: Icon(
+                                Icons.notifications_none,
+                                color: Colors.white,
+                                size: 28,
+                              )),
                         ),
-                      ),
+                        SizedBox(width: 5),
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: Colors.amber[300],
+                          ),
+                          // padding: EdgeInsets.all(1),
+                          child: IconButton(
+                            onPressed: () {},
+                            icon: Icon(
+                              Icons.settings,
+                              color: Colors.white,
+                              size: 28,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
+                    SizedBox(height: 5),
+                    Counter(allTasks: myTasks.length, doneTasks: getStatus())
                   ],
                 ),
               ],
