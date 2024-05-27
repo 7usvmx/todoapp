@@ -57,6 +57,9 @@ class Todoapp extends StatefulWidget {
 }
 
 class _TodoappState extends State<Todoapp> {
+  final titleController = TextEditingController();
+  final detailsController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -100,6 +103,7 @@ class _TodoappState extends State<Todoapp> {
                               padding: EdgeInsets.all(18),
                               width: double.infinity,
                               child: TextField(
+                                controller: titleController,
                                 maxLength: 26,
                                 decoration: InputDecoration(
                                   hintMaxLines: 26,
@@ -119,6 +123,7 @@ class _TodoappState extends State<Todoapp> {
                               padding: EdgeInsets.all(18),
                               width: double.infinity,
                               child: TextField(
+                                controller: detailsController,
                                 decoration: InputDecoration(
                                   labelText: "Add task Details",
                                   prefixIcon: Icon(Icons.task_alt_rounded),
