@@ -1,15 +1,11 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 
 class TaskCard extends StatelessWidget {
   final taskTitle;
   final taskDetails;
   final checked;
-
-  
 
   const TaskCard({
     super.key,
