@@ -4,18 +4,6 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 
-class Tasks {
-  String? taskTitle;
-  String? taskDetails;
-  Bool? taskStatus;
-
-  Tasks({
-    required this.taskTitle,
-    required this.taskDetails,
-    required this.taskStatus,
-  });
-}
-
 class TaskCard extends StatelessWidget {
   final taskTitle;
   final taskDetails;
