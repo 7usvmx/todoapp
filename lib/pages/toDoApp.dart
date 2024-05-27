@@ -22,31 +22,31 @@ List myTasks = [
     taskDetails: " last website project (Noba Store) meeting at 4 PM",
     taksStatus: true,
   ),
-  TasksController(
-    taskTitle: "Read Book",
-    taskDetails: "some pages of new book ",
-    taksStatus: false,
-  ),
-  TasksController(
-    taskTitle: "Learn new line of code",
-    taskDetails: "Dialogs in flutter",
-    taksStatus: false,
-  ),
-  TasksController(
-    taskTitle: "Go to GYM",
-    taskDetails: "Today i should go to GYM at 9 PM ",
-    taksStatus: true,
-  ),
-  TasksController(
-    taskTitle: "Go to GYM",
-    taskDetails: "Today i should go to GYM at 9 PM ",
-    taksStatus: true,
-  ),
-  TasksController(
-    taskTitle: "Go to GYM",
-    taskDetails: "Today i should go to GYM at 9 PM ",
-    taksStatus: false,
-  ),
+  // TasksController(
+  //   taskTitle: "Read Book",
+  //   taskDetails: "some pages of new book ",
+  //   taksStatus: false,
+  // ),
+  // TasksController(
+  //   taskTitle: "Learn new line of code",
+  //   taskDetails: "Dialogs in flutter",
+  //   taksStatus: false,
+  // ),
+  // TasksController(
+  //   taskTitle: "Go to GYM",
+  //   taskDetails: "Today i should go to GYM at 9 PM ",
+  //   taksStatus: true,
+  // ),
+  // TasksController(
+  //   taskTitle: "Go to GYM",
+  //   taskDetails: "Today i should go to GYM at 9 PM ",
+  //   taksStatus: true,
+  // ),
+  // TasksController(
+  //   taskTitle: "Go to GYM",
+  //   taskDetails: "Today i should go to GYM at 9 PM ",
+  //   taksStatus: false,
+  // ),
 ];
 
 class Todoapp extends StatefulWidget {
@@ -60,14 +60,35 @@ class _TodoappState extends State<Todoapp> {
   final titleController = TextEditingController();
   final detailsController = TextEditingController();
 
+  newTask() {
+    myTasks.insert(
+      0,
+      TasksController(
+        taskTitle: titleController.text,
+        taskDetails: detailsController.text,
+        taksStatus: true,
+      ),
+    );
+    // myTasks.add();
+  }
+
+// ! this code for real time listening to text field texts
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   titleController.addListener(test);
+  // }
+// ! this code for real time listening to text field texts
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       //! floating button
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          //! Open Add task section when i tab on floating button
-
+          //! Open Add task section
+          // when i tab on floating button
           showModalBottomSheet(
               context: context,
               builder: (context) {
@@ -88,7 +109,7 @@ class _TodoappState extends State<Todoapp> {
                           children: [
                             //! add task title
                             Text(
-                              "Add New Task",
+                              "Add new task",
                               style: TextStyle(
                                 fontSize: 20,
                               ),
@@ -146,6 +167,11 @@ class _TodoappState extends State<Todoapp> {
                                     color: Colors.amber),
                               ),
                               onPressed: () {
+                                setState(() {
+                                  newTask();
+                                  titleController.text = "";
+                                  detailsController.text = "";
+                                });
                                 Navigator.pop(context);
                               },
                               child: Text("add task"),
