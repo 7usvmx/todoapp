@@ -9,6 +9,8 @@ class TaskCard extends StatelessWidget {
   final taskDetails;
   final checked;
 
+  
+
   const TaskCard({
     super.key,
     required this.taskTitle,
@@ -25,6 +27,7 @@ class TaskCard extends StatelessWidget {
           color: Colors.amber,
           borderRadius: BorderRadius.circular(10),
         ),
+        margin: EdgeInsets.only(bottom: 15),
         width: double.infinity,
         padding: EdgeInsets.all(28),
         child:

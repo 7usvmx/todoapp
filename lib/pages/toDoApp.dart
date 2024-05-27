@@ -4,8 +4,42 @@ import 'package:flutter/material.dart';
 import 'package:todoapp/utilities/feeling.dart';
 import 'package:todoapp/utilities/taskCard.dart';
 
-class Todoapp extends StatefulWidget {
+class TasksController {
+  String taskTitle;
+  String taskDetails;
+  bool taksStatus;
 
+  TasksController({
+    required this.taskTitle,
+    required this.taskDetails,
+    required this.taksStatus,
+  });
+}
+
+List myTasks = [
+  TasksController(
+    taskTitle: "Meeting",
+    taskDetails: " last website project (Noba Store) meeting at 4 PM",
+    taksStatus: true,
+  ),
+  TasksController(
+    taskTitle: "Read Book",
+    taskDetails: "some pages of new book ",
+    taksStatus: true,
+  ),
+  TasksController(
+    taskTitle: "Learn new line of code",
+    taskDetails: "Dialogs in flutter",
+    taksStatus: true,
+  ),
+  TasksController(
+    taskTitle: "Go to GYM",
+    taskDetails: "Today i should go to GYM at 9 PM ",
+    taksStatus: true,
+  ),
+];
+
+class Todoapp extends StatefulWidget {
   const Todoapp({super.key});
 
   @override
@@ -123,48 +157,12 @@ class _TodoappState extends State<Todoapp> {
               Expanded(
                 child: ListView(
                   children: [
-                    TaskCard(
-                      taskTitle: "Go to GYM",
-                      taskDetails: "Today i should go to GYM at 9 PM ",
+                    ...myTasks.map(
+                      (e) => TaskCard(
+                        taskTitle: e.taskTitle,
+                        taskDetails: e.taskDetails,
+                      ),
                     ),
-                    SizedBox(height: 12),
-                    TaskCard(
-                      taskTitle: "Learn new line of code",
-                      taskDetails: "Dialogs in flutter",
-                    ),
-                    SizedBox(height: 12),
-                    TaskCard(
-                      taskTitle: "Read Book",
-                      taskDetails: "some pages of new book ",
-                    ),
-                    SizedBox(height: 12),
-                    TaskCard(
-                      taskTitle: "Meeting",
-                      taskDetails:
-                          " last website project (Noba Store) meeting at 4 PM",
-                    ),
-                    SizedBox(height: 12),
-                    TaskCard(
-                      taskTitle: "Go to GYM",
-                      taskDetails: "Today i should go to GYM at 9 PM ",
-                    ),
-                    SizedBox(height: 12),
-                    TaskCard(
-                      taskTitle: "Learn new line of code",
-                      taskDetails: "Dialogs in flutter",
-                    ),
-                    SizedBox(height: 12),
-                    TaskCard(
-                      taskTitle: "Read Book",
-                      taskDetails: "some pages of new book ",
-                    ),
-                    SizedBox(height: 12),
-                    TaskCard(
-                      taskTitle: "Meeting",
-                      taskDetails:
-                          " last website project (Noba Store) meeting at 4 PM",
-                    ),
-                    SizedBox(height: 12),
                   ],
                 ),
               ),
