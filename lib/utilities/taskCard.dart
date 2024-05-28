@@ -26,7 +26,7 @@ class TaskCard extends StatelessWidget {
       widthFactor: 1,
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.amber,
+          color: status ? Colors.amber : Colors.green,
           borderRadius: BorderRadius.circular(10),
         ),
         margin: EdgeInsets.only(bottom: 15),
