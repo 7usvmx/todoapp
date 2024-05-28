@@ -53,6 +53,9 @@ class TaskCard extends StatelessWidget {
                 Text(
                   taskTitle,
                   style: TextStyle(
+                      decoration: !status
+                          ? TextDecoration.lineThrough
+                          : TextDecoration.none,
                       color: Colors.white,
                       fontSize: 18,
                       fontWeight: FontWeight.bold),
