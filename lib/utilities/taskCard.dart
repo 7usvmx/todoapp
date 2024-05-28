@@ -8,12 +8,14 @@ class TaskCard extends StatelessWidget {
   final status;
   final id;
   final Function changer;
+  final Function removeTask;
 
   const TaskCard({
     super.key,
     required this.taskTitle,
     required this.taskDetails,
     required this.changer,
+    required this.removeTask,
     required this.id,
     this.status,
   });
@@ -38,6 +40,15 @@ class TaskCard extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                IconButton(
+                  onPressed: () {
+                    changer(id);
+                  },
+                  icon: Icon(
+                    status == true ? Icons.check_rounded : Icons.close_rounded,
+                    color: Colors.white,
+                  ),
+                ),
                 //! Title Of task
                 Text(
                   taskTitle,
@@ -59,14 +70,23 @@ class TaskCard extends StatelessWidget {
                 ),
               ],
             ),
-            IconButton(
-              onPressed: () {
-                changer(id);
-              },
-              icon: Icon(
-                status == true ? Icons.check_rounded : Icons.close_rounded,
-                color: Colors.white,
-              ),
+            Row(
+              children: [
+                IconButton(
+                  style: ButtonStyle(
+                    padding: WidgetStatePropertyAll(
+                      EdgeInsets.all(0),
+                    ),
+                  ),
+                  onPressed: () {
+                    removeTask(id);
+                  },
+                  icon: Icon(
+                    Icons.delete_forever_outlined,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
             )
           ],
         ),

@@ -21,17 +21,20 @@ class Todoapp extends StatefulWidget {
   const Todoapp({super.key});
 
   @override
-  State<Todoapp> createState() => _TodoappState();
+  State<Todoapp> createState() => Return();
 }
 
-class _TodoappState extends State<Todoapp> {
+class Return extends State<Todoapp> {
   final errorMsg = "title and details can not be empty";
   final titleController = TextEditingController();
   final detailsController = TextEditingController();
 
+//! Return Error message
   errorMsgFunc() {
     return errorMsg;
   }
+
+//! Sample data for tasks
 
   List myTasks = [
     TasksController(
@@ -56,12 +59,28 @@ class _TodoappState extends State<Todoapp> {
     ),
   ];
 
+//! remove task by ID
+  removeTask(int id) {
+    setState(() {
+      myTasks.remove(myTasks[id]);
+    });
+  }
+
+//! remove all tasks
+  removeTasks() {
+    setState(() {
+      myTasks.clear();
+    });
+  }
+
+  //! Changing task status if its done or not
   changer(int id) {
     setState(() {
       myTasks[id].taksStatus = !myTasks[id].taksStatus;
     });
   }
 
+//! Getting all completed Tasks
   int getStatus() {
     int completedTasks = 0;
 
@@ -73,6 +92,8 @@ class _TodoappState extends State<Todoapp> {
     return completedTasks;
   }
 
+  //! Add new tasks
+
   newTask() {
     myTasks.insert(
       0,
@@ -82,7 +103,6 @@ class _TodoappState extends State<Todoapp> {
         taksStatus: true,
       ),
     );
-    // myTasks.add();
   }
 
   //! Error message
@@ -267,9 +287,11 @@ class _TodoappState extends State<Todoapp> {
                           ),
                           // padding: EdgeInsets.all(1),
                           child: IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                removeTasks();
+                              },
                               icon: Icon(
-                                Icons.notifications_none,
+                                Icons.delete_forever_rounded,
                                 color: Colors.white,
                                 size: 28,
                               )),
@@ -346,6 +368,7 @@ class _TodoappState extends State<Todoapp> {
                         status: e.taksStatus,
                         changer: changer,
                         id: myTasks.indexOf(e),
+                        removeTask: removeTask,
                       ),
                     ),
                   ],
