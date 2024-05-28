@@ -54,16 +54,6 @@ class _TodoappState extends State<Todoapp> {
       taskDetails: "Today i should go to GYM at 9 PM ",
       taksStatus: true,
     ),
-    TasksController(
-      taskTitle: "Go to GYM",
-      taskDetails: "Today i should go to GYM at 9 PM ",
-      taksStatus: true,
-    ),
-    TasksController(
-      taskTitle: "Go to GYM",
-      taskDetails: "Today i should go to GYM at 9 PM ",
-      taksStatus: false,
-    ),
   ];
 
   int getStatus() {
