@@ -6,11 +6,15 @@ class TaskCard extends StatelessWidget {
   final taskTitle;
   final taskDetails;
   final status;
+  final id;
+  final Function changer;
 
   const TaskCard({
     super.key,
     required this.taskTitle,
     required this.taskDetails,
+    required this.changer,
+    required this.id,
     this.status,
   });
 
@@ -57,10 +61,10 @@ class TaskCard extends StatelessWidget {
             ),
             IconButton(
               onPressed: () {
-                print("Checked");
+                changer(id);
               },
               icon: Icon(
-                status == true ? Icons.close_rounded : Icons.check_rounded,
+                status == true ? Icons.check_rounded : Icons.close_rounded,
                 color: Colors.white,
               ),
             )

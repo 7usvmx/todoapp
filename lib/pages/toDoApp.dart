@@ -56,6 +56,12 @@ class _TodoappState extends State<Todoapp> {
     ),
   ];
 
+  changer(int id) {
+    setState(() {
+      myTasks[id].taksStatus = !myTasks[id].taksStatus;
+    });
+  }
+
   int getStatus() {
     int completedTasks = 0;
 
@@ -338,6 +344,8 @@ class _TodoappState extends State<Todoapp> {
                         taskTitle: e.taskTitle,
                         taskDetails: e.taskDetails,
                         status: e.taksStatus,
+                        changer: changer,
+                        id: myTasks.indexOf(e),
                       ),
                     ),
                   ],
