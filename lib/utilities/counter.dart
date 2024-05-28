@@ -24,7 +24,7 @@ class Counter extends StatelessWidget {
       child: Text(
         "$doneTasks of $allTasks",
         style: TextStyle(
-          color: Colors.white,
+          color: allTasks == doneTasks ? Colors.green : Colors.white,
           fontWeight: FontWeight.bold,
         ),
       ),

@@ -297,7 +297,10 @@ class _TodoappState extends State<Todoapp> {
                       ],
                     ),
                     SizedBox(height: 5),
-                    Counter(allTasks: myTasks.length, doneTasks: getStatus())
+                    Counter(
+                      allTasks: myTasks.length,
+                      doneTasks: getStatus(),
+                    )
                   ],
                 ),
               ],
